@@ -1,0 +1,122 @@
+
+ body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+}
+
+/* Navbar styling */
+.navbar {
+    z-index: 1000;
+}
+.nav{
+    gap: 10px;
+}
+
+/* Container for content */
+.container {
+    max-width: 1200px;
+    margin-top: 80px; /* Space for navbar */
+}
+
+/* General styling */
+h2, h3, h4 {
+    color: #333;
+}
+
+/* Box Styling */
+.box {
+    background-color:rgb(115, 115, 244);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.box> h3{
+    font-size: 30px;
+}
+.box > strong{
+    font-size: 40px;
+}
+.box1 {
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.box1> h4{
+    font-size: 30px;
+}
+.box1 > strong{
+    font-size: 30px;
+}
+.box2 {
+    background-color: #dc3545;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.box2> h4{
+    font-size: 30px;
+}
+.box2 > strong{
+    font-size: 30px;
+}
+/* Chart Container */
+.chart-container {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.action {
+    display: flex;
+    justify-content: space-around;
+    /* gap: 10px; */
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .container {
+        margin-top: 120px; /* Adjusted space for navbar */
+    }
+
+    /* Stack content vertically on smaller screens */
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Right side content on top */
+    .col-lg-6 {
+        width: 100%;
+    }
+
+    .table-responsive {
+        max-height: 400px;
+        overflow-x: auto;
+    }
+
+    /* Form container full width on mobile */
+    .form-container {
+        width: 100%;
+    }
+}

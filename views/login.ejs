@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+      <form action="/login" method="post">
+        
+        <label for="email">Email</label>
+        <input type="text"  name="email" id="email" placeholder="enter your email" value="<%= emailValue %>"   autofocus  />
+        
+      <% if (emailError) { %>
+        <div class="error"><%= emailError %></div>
+      <% } %>
+      
+       
+  
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" placeholder="enter your password" autofocus/>
+        
+      <% if (passwordError) { %>
+        <div class="error"><%= passwordError %></div>
+      <% } %>
+        
+  
+        <button type="submit" id="button">Login</button>
+        <span>Signup for <a href="/signup">Expenso</a> </span>
+        
+      </form>
+      </div>
+</body>
+</html>

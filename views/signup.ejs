@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Signup</h1>
+      <form class="form" method="post" action="/signup">
+        
+        <label for="name">Name:</label>
+        <input type="text"  name="name" id="name" placeholder="enter your name"   value="<%= nameValue %>"  />
+        <% if (nameError) { %>
+          <div class="error"><%= nameError %></div>
+        <% } %>
+        
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="enter your email"  value="<%= emailValue %>"  autofocus />
+        <% if (emailError) { %>
+          <div class="error"><%= emailError %></div>
+        <% } %>
+        
+  
+        <label for="password">Password</label>
+        <input type="text"  name="password" id="password" placeholder="enter your password"    autofocus/>
+        <% if (passwordError) { %>
+          <div class="error"><%= passwordError %></div>
+        <% } %>
+  
+        <button type="submit" id="button">signup</button>
+        <span>Already have an account ? <a href="/login">Login here</a> </span>
+        
+      </form>
+      </div>
+      
+</body>
+</html>

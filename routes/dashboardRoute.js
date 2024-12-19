@@ -1,10 +1,10 @@
 const  router = require('express').Router();
 const {HandleToGetDashboard, HandleToAddTransaction, HandleToDeleteTransaction, HandleToGetEditTransaction, HandleToPostEditTransaction} = require('../controllers/dashboardController');
-const { verifyToLogedInUser ,refreshToken} = require('../middlewares/auth');
+const { verifyToLogedInUser, refreshToken ,} = require('../middlewares/auth');
 
 // router.get('/dashboard',(req,res)=> res.render('dashboard'));
 
-// router.use('/dashboard',refreshToken)
+router.use(refreshToken)
 
 router.get('/',verifyToLogedInUser, HandleToGetDashboard);
 router.post('/dashboard/add-transaction',verifyToLogedInUser,HandleToAddTransaction);

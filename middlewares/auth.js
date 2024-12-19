@@ -38,21 +38,53 @@ const restrictIfAuthenticateUser = async (req, res, next) => {
     next();
 }
 const refreshToken = async (req, res, next) => {
-    const token = req.cookies.token;
-    JWT.verify(token, process.env.JWT_Secret, (err, decoded) => {
-        if (!err) {
-            const newToken = JWT.sign({
-                   userId: user._id,
-                   username: user.name 
-                   },process.env.JWT_Secret,
-                  { 
-                    expiresIn: '1h' 
-                  });
-
-            res.cookie('token', newToken, { httpOnly: true, secure: true });
+    try {
+        const token = req.cookies.token;
+        if(!token){
+            return res.redirect('/login');
         }
-        next();
-    });
+        const decoded =   JWT.verify(token, process.env.JWT_Secret)
+
+        const isExpired = Date.now() >= decoded.exp * 1000;
+        if(isExpired){
+            return res.redirect('/login');
+        }
+        const newToken = JWT.sign({
+            id: decoded.id,
+            email: decoded.email 
+            },process.env.JWT_Secret,
+           { 
+             expiresIn: '3m' 
+           });
+
+           res.cookie('jwt', newToken, {
+            httpOnly: true,
+            secure: true, // Set to true in production
+            maxAge: 180000, // 1 hour in milliseconds
+            });   
+            req.userId = decoded.id;
+            next();
+    } catch (error) {
+        console.error('Error in refreshToken middleware:', err.message);
+        return res.redirect('/login'); // Error? Redirect to login   
+    }
+
+    
+
+    // JWT.verify(token, process.env.JWT_Secret, (err, decoded) => {
+    //     if (!err) {
+    //         const newToken = JWT.sign({
+    //                userId: decoded._id,
+    //                username: decoded.name 
+    //                },process.env.JWT_Secret,
+    //               { 
+    //                 expiresIn: '3m' 
+    //               });
+
+    //         res.cookie('token', newToken, { httpOnly: true, secure: true });
+    //     }
+    //     next();
+    // });
 
 }
 module.exports = {

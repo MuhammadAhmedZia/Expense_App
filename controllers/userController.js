@@ -110,7 +110,7 @@ const HandleToLoginUser = async (req, res) => {
        username: user.name 
        },process.env.JWT_Secret,
       { 
-        expiresIn: '1h' 
+        expiresIn: '3m' 
       });
 
     res.cookie('token',token);

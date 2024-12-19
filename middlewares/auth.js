@@ -46,7 +46,7 @@ const refreshToken = async (req, res, next) => {
                    username: user.name 
                    },process.env.JWT_Secret,
                   { 
-                    expiresIn: '5m' 
+                    expiresIn: '1h' 
                   });
 
             res.cookie('token', newToken, { httpOnly: true, secure: true });

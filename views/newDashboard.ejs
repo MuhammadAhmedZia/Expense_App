@@ -166,7 +166,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="dashboard.css">
 </head>
@@ -177,7 +179,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Expenso</a>
             <div class="d-flex align-items-center nav">
-                <span class="text-white mr-3">Welcome, <% if (locals.username) { %> <%= username %> <% } %></span>
+                <span class="text-white mr-3">Welcome, <% if (locals.username) { %>
+                        <%= username %>
+                            <% } %></span>
                 <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
             </div>
         </div>
@@ -191,7 +195,7 @@
                 <div class="chart-container ">
                     <h3 class="text-center mt-2">Expense Chart</h3>
                     <canvas class="mb-3" id="pieChart" width="370" height="370"></canvas>
-                    <input type="hidden" id="totalIncome" value="<%= totalIncome %>">
+                    <input type="hidden" id="totalAmount" value="<%= totalAmount %>">
                     <input type="hidden" id="totalExpense" value="<%= totalExpense %>">
                 </div>
 
@@ -223,16 +227,22 @@
                 <div class="amount-container">
                     <div class="total-amount box text-center p-10 mb-3">
                         <h3>Total Amount</h3>
-                        <strong><%= totalAmount %></strong>
+                        <strong>
+                            <%= totalAmount %>
+                        </strong>
                     </div>
                     <div class="total-income-expense mb-4">
                         <div class="totalIncome box1 text-center p-3">
                             <h4>Total Income</h4>
-                            <strong><%= totalIncome %></strong>
+                            <strong>
+                                <%= totalIncome %>
+                            </strong>
                         </div>
                         <div class="totalExpense box2 text-center p-3">
                             <h4>Total Expense</h4>
-                            <strong><%= totalExpense %></strong>
+                            <strong>
+                                <%= totalExpense %>
+                            </strong>
                         </div>
                     </div>
 
@@ -240,42 +250,54 @@
                     <div class="expense-list ">
                         <h3 class="text-center">Expense List</h3>
                         <% if (locals.expenses) { %>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Sr.#</th>
-                                        <th>Type</th>
-                                        <th>Amount</th>
-                                        <th>Description</th>
-                                        <th>Time</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody">
-                                    <% expenses.forEach((el, index) => { %>
-                                    <tr>
-                                        <td><%= index + 1 %></td>
-                                        <td><%= el.type %></td>
-                                        <td><%= el.amount %></td>
-                                        <td><%= el.description %></td>
-                                        <td><%= el.createdAt.toLocaleString() %></td>
-                                        <td class="action">
-                                            <a href="/dashboard/edit-transaction/<%= el._id %>" class="btn btn-warning btn-sm">
-                                                <i class="fa-regular fa-pen-to-square"></i> 
-                                            </a>
-                                            <form action="/dashboard/delete-transaction/<%= el._id %>" method="POST" style="display:inline;">
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-trash-can"></i> 
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <% }) %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <% } %>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.#</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Description</th>
+                                            <th>Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                        <% expenses.forEach((el, index)=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= index + 1 %>
+                                                </td>
+                                                <td>
+                                                    <%= el.type %>
+                                                </td>
+                                                <td>
+                                                    <%= el.amount %>
+                                                </td>
+                                                <td>
+                                                    <%= el.description %>
+                                                </td>
+                                                <td>
+                                                    <%= el.createdAt.toLocaleString() %>
+                                                </td>
+                                                <td class="action">
+                                                    <a href="/dashboard/edit-transaction/<%= el._id %>"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>
+                                                    <form action="/dashboard/delete-transaction/<%= el._id %>"
+                                                        method="POST" style="display:inline;">
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
             </div>
@@ -283,13 +305,13 @@
     </div>
 
     <script>
-        const totalIncome = parseFloat(document.getElementById('totalIncome').value);
+        const totalIncome = parseFloat(document.getElementById('totalAmount').value);
         const totalExpense = parseFloat(document.getElementById('totalExpense').value);
         const ctx = document.getElementById('pieChart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Income', 'Expense'],
+                labels: ['Total Amount', 'Expense'],
                 datasets: [{
                     data: [totalIncome, totalExpense],
                     backgroundColor: ['#28a745', '#dc3545']
@@ -312,11 +334,21 @@
                 }
             }
         });
+
+        setInterval(() => {
+            // Check if the 'jwt' cookie exists
+            const token = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('token='));
+
+            if (!token) {
+                // If no token, redirect to login page
+                window.location.href = '/login';
+            }
+        }, 300000); // Check every 1 minute
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
-
-

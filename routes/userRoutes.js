@@ -5,6 +5,7 @@ const {loginValidation,signupValidation} = require('../middlewares/userValidatio
 
 const router = require('express').Router();
 
+
 router.get('/signup',restrictIfAuthenticateUser,(req,res)=>{
     
     res.render('signup', { errors: {}, data: req.body  , nameError: null, emailError: null, passwordError: null, nameValue: '', emailValue: ''  });

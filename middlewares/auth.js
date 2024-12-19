@@ -1,37 +1,62 @@
 const JWT = require('jsonwebtoken');
-// const JWT_Secret = 'your_jwt_secret_key';
 
-const verifyToLogedInUser = async (req, res ,next) => {
+
+const verifyToLogedInUser = async (req, res, next) => {
     const token = req.cookies.token;
-    if(!token){
-        res.redirect('/login');
+    if (!token) {
+        return res.redirect('/login');
     }
 
     try {
-        const decoded = JWT.verify(token,process.env.JWT_Secret);
-        req.user = decoded;
-        next();
+        JWT.verify(token, process.env.JWT_Secret, (err, decoded) => {
+            if (err) {
+                return res.redirect('/login');
+            }
+
+            req.user = decoded;
+            next();
+        });
+
     } catch (error) {
-        console.log('Token varification failed',error);
-        
-        
+        console.log('Token varification failed', error);
+
+
     }
 }
 
-const restrictIfAuthenticateUser = async (req,res,next) => {
+const restrictIfAuthenticateUser = async (req, res, next) => {
     const token = req.cookies.token;
-    if(token){
+    if (token) {
         try {
             JWT.verify(token, process.env.JWT_Secret);
             return res.redirect('/');
         } catch (error) {
-            console.log('invalid token',error);
+            console.log('invalid token', error);
             res.clearCookie('token');
         }
     }
     next();
 }
+const refreshToken = async (req, res, next) => {
+    const token = req.cookies.token;
+    JWT.verify(token, process.env.JWT_Secret, (err, decoded) => {
+        if (!err) {
+            const newToken = JWT.sign({
+                   userId: user._id,
+                   username: user.name 
+                   },process.env.JWT_Secret,
+                  { 
+                    expiresIn: '5m' 
+                  });
+
+            res.cookie('token', newToken, { httpOnly: true, secure: true });
+        }
+        next();
+    });
+
+}
 module.exports = {
     verifyToLogedInUser,
     restrictIfAuthenticateUser,
+    refreshToken
 }

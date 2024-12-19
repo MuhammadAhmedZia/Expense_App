@@ -110,11 +110,13 @@ const HandleToLoginUser = async (req, res) => {
        username: user.name 
        },process.env.JWT_Secret,
       { 
-        expiresIn: '1h' 
+        expiresIn: '10m' 
       });
 
     res.cookie('token',token);
     return res.redirect('/'); 
+  }else{
+    return res.redirect('/login')
   }
  } catch (err) {
   console.log('login failed',err);

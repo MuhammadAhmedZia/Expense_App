@@ -71,21 +71,7 @@ const refreshToken = async (req, res, next) => {
 
     
 
-    // JWT.verify(token, process.env.JWT_Secret, (err, decoded) => {
-    //     if (!err) {
-    //         const newToken = JWT.sign({
-    //                userId: decoded._id,
-    //                username: decoded.name 
-    //                },process.env.JWT_Secret,
-    //               { 
-    //                 expiresIn: '3m' 
-    //               });
-
-    //         res.cookie('token', newToken, { httpOnly: true, secure: true });
-    //     }
-    //     next();
-    // });
-
+  
 }
 module.exports = {
     verifyToLogedInUser,

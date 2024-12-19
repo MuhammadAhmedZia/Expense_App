@@ -60,7 +60,7 @@ const refreshToken = async (req, res, next) => {
            res.cookie('jwt', newToken, {
             httpOnly: true,
             secure: true, // Set to true in production
-            maxAge: 180000, // 1 hour in milliseconds
+            maxAge: 3600000, // 1 hour in milliseconds
             });   
             req.userId = decoded.id;
             next();
